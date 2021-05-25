@@ -71,7 +71,41 @@ const makeGuess = function (captureInput) {
     } else {
         guessedLetters.push(captureInput);
         console.log(guessedLetters);
+        showGuessedLetters();
+        updateWordInProgress(guessedLetters);
     }
 
+};
 
+//Create a Function to Show the Guessed Letters
+const showGuessedLetters = function () {
+    guessedLettersElement.innerHTML = "";
+    for (const letter of guessedLetters) {
+        const li = document.createElement("li");
+        li.innerText = letter;
+        guessedLettersElement.append(li);
+    };
+};
+
+//Create a Function to Update the Word in Progress
+const updateWordInProgress = function (guessedLetters) {
+    const wordUpper = word.toUpperCase();
+    const wordArray = wordUpper.split("");
+    const revealLetter = [];
+    console.log(wordArray);
+    for (const letter of wordArray) {
+        if (guessedLetters.includes(letter)) {
+            revealLetter.push(letter);
+        } else revealLetter.push("●");
+    }
+    progressParagraph.innerText = revealLetter.join("");
+    playerWins();
+};
+
+//Create a Function to Check If the Player Won
+const playerWins = function () {
+    if (word.toUpperCase() === progressParagraph.innerText) {
+        guessMessage.classList.add("win");
+        guessMessage.innerHTML = `<p class="highlight">You guessed correct the word! Congrats!</p>`;
+    }
 };
