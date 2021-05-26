@@ -145,7 +145,7 @@ const remainingGuessCount = function (captureInput) {
 const playerWins = function () {
     if (word.toUpperCase() === progressParagraph.innerText) {
         guessMessage.classList.add("win");
-        guessMessage.innerHTML = `<p class="highlight">You guessed correct the word! Congrats!</p>`;
+        guessMessage.innerHTML = `<p class="highlight">You guessed the correct word! Congrats!</p>`;
 
         startOver();
     }
